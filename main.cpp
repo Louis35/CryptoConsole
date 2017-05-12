@@ -9,7 +9,7 @@
 
 using namespace std;
 
-//DÈclaration des const
+//D√©claration des const
 
 const int ASCII_Max = 126;
 const int ASCII_Min = 32;
@@ -58,11 +58,11 @@ int conversion_char_int(char a)
 
     if (ASCIIOfChar >= ASCII_Min && ASCIIOfChar <= ASCII_Max)
     {
-        return ASCIIOfChar; //on retourne la valeur ASCII du caractËre
+        return ASCIIOfChar; //on retourne la valeur ASCII du caract√®re
     }
     else
     {
-        return 0; //on retourn 0 car le caractËre n'est pas compris dans la plage de fonctionnement (32 ‡ 126 | (espace) ‡ ~)
+        return 0; //on retourn 0 car le caract√®re n'est pas compris dans la plage de fonctionnement (32 √† 126 | (espace) √† ~)
     }
 }
 
@@ -73,11 +73,11 @@ char conversion_int_char(int a)
     if (a >= ASCII_Min && a <= ASCII_Max)
     {
         char CharOfASCII = a; //convesrion effectuer
-        return CharOfASCII; //on retourne le caractËre de la valeur ASCII
+        return CharOfASCII; //on retourne le caract√®re de la valeur ASCII
     }
     else
     {
-        return vide; //on retourn "rien" car le code ASCII n'est pas compris dans la plage de fonctionnement (32 ‡ 126 | (espace) ‡ ~)
+        return vide; //on retourn "rien" car le code ASCII n'est pas compris dans la plage de fonctionnement (32 √† 126 | (espace) √† ~)
     }
 }
 
@@ -171,7 +171,7 @@ vector<string> Crypto(bool crypt, vector<string> Words, string Key)
     int newChar_MyCode, taille12223;
     int KeyPlace(0);
 
-    //convertion de la clÈ en tableau de nombre MyCode
+    //convertion de la cl√© en tableau de nombre MyCode
     for(unsigned int i(0); i < Key.size(); i++)
     {
         Key_MyCode.push_back(convert_ASCII_MyCode(conversion_char_int(Key[i])));
@@ -180,13 +180,13 @@ vector<string> Crypto(bool crypt, vector<string> Words, string Key)
     //Lecture d'une ligne
     for(unsigned int i(0); i < Words.size(); ++i)
     {
-        //lecture d'un caractËre
+        //lecture d'un caract√®re
         for(unsigned int ii(0); ii < Words[i].size(); ii++)
         {
-            //convertion d'un caractËre de la ligne en nombre MyCode
+            //convertion d'un caract√®re de la ligne en nombre MyCode
             Words_MyCode = convert_ASCII_MyCode(conversion_char_int(Words[i][ii]));
 
-            //MODE CRYPT -> Addition des caractËres
+            //MODE CRYPT -> Addition des caract√®res
             if (crypt)
             {
                 newChar_MyCode = Words_MyCode + Key_MyCode[KeyPlace];
@@ -197,7 +197,7 @@ vector<string> Crypto(bool crypt, vector<string> Words, string Key)
                 }
             }
 
-            //MODE DECRYPT -> Soustraction des caractËres
+            //MODE DECRYPT -> Soustraction des caract√®res
             else if (!crypt)
             {
                 newChar_MyCode = Words_MyCode - Key_MyCode[KeyPlace];
@@ -212,14 +212,14 @@ vector<string> Crypto(bool crypt, vector<string> Words, string Key)
                 system("pause");
                 exit(EXIT_FAILURE);
             }
-            //Ècriture du caractËre crypter / dÈcryper en ASCII
+            //√©criture du caract√®re crypter / d√©cryper en ASCII
             result_ASCII_tmp.push_back(convert_MyCode_ASCII(newChar_MyCode));
 
             KeyPlace++;
             KeyPlace = KeyPlace % Key.size();
         }
 
-        //convesrtion de la ligne ASCII en string er Ècriture dans le tableau final
+        //convesrtion de la ligne ASCII en string er √©criture dans le tableau final
         result_sring_final.push_back(conversion_vectInt_str(result_ASCII_tmp));
 
         //ecrasement du tableau temporaire
@@ -236,7 +236,7 @@ vector<string> Crypto(bool crypt, vector<string> Words, string Key)
 void CryptOrDecryptFiles(string FilePath)
 {
 
-    //DÈclaration des Var
+    //D√©claration des Var
     vector<string> Fichier_processed_tab;
     vector<string> Fichier_processed_tab__verif;
     vector<string> Fichier_not_processed_tab;
@@ -246,15 +246,15 @@ void CryptOrDecryptFiles(string FilePath)
 
     ifstream fichier(FilePath.c_str()); //ouverture du fichier
 
-    if (fichier) //vÈrification de l'ouverture du fichier
+    if (fichier) //v√©rification de l'ouverture du fichier
     {
-        //sÈlÈction du mode ("crypt" ou "decrypt")
+        //s√©l√©ction du mode ("crypt" ou "decrypt")
         //boucle tant que l'utilisateur n'entre pas soit "crypt" ou "decrypt"
         do
         {
             if(error < 1)
             {
-                cout << "crypt or decrypt this file : " << endl; //texte de dÈpart
+                cout << "crypt or decrypt this file : " << endl; //texte de d√©part
             }
             else
             {
@@ -279,19 +279,19 @@ void CryptOrDecryptFiles(string FilePath)
         }
         else
         {
-            exit(EXIT_FAILURE); //aucun mode sÈlÈctionner = erreur = arret du programme
+            exit(EXIT_FAILURE); //aucun mode s√©l√©ctionner = erreur = arret du programme
         }
 
         //stockae du fichier dans un tableau
         while (getline(fichier, ligne))
         {
-            Fichier_not_processed_tab.push_back(ligne); //ajout de la ligne ‡ la fin du tableau de string
+            Fichier_not_processed_tab.push_back(ligne); //ajout de la ligne √† la fin du tableau de string
         }
         fichier.close(); //fichier lu et enregister dans le tableau -> fermeture du fichier
 
         system("cls");
 
-        //renseignement de la clÈ de cryptage / dÈcryptage par l'utilisateur
+        //renseignement de la cl√© de cryptage / d√©cryptage par l'utilisateur
         cryptKey = getKeyOfUser();
 
         //CRYPTAGE - DECRYPTAGE
@@ -304,7 +304,7 @@ void CryptOrDecryptFiles(string FilePath)
             exit(EXIT_FAILURE);
         }
 
-        //sÈlÈction du mode d'affichage du fichier crypter / dÈcrypter
+        //s√©l√©ction du mode d'affichage du fichier crypter / d√©crypter
         system("cls");
         do
         {
@@ -345,20 +345,20 @@ void CryptOrDecryptFiles(string FilePath)
 
             saveas = ajoutTXT(saveas);
 
-            //Ècriture dans le fichier de rÈsultat le text crypter/decrypter
+            //√©criture dans le fichier de r√©sultat le text crypter/decrypter
             ofstream fichier(saveas.c_str()); //ouverture du fichier
-            if(fichier)  //vÈrification de l'ouverture du fichier
+            if(fichier)  //v√©rification de l'ouverture du fichier
             {
-                //Ècriture ligne par ligne du fichier crypter / dÈcrypter
+                //√©criture ligne par ligne du fichier crypter / d√©crypter
                 for(unsigned int i(0); i < Fichier_processed_tab.size(); i++)
                 {
-                    //convesrion tableau ASCII -> Chiane de caractËre
+                    //convesrion tableau ASCII -> Chiane de caract√®re
                     fichier << Fichier_processed_tab[i] << endl;
                 }
             }
             else
             {
-                //erreur : impossible de crÈÈ ou d'Ècrire dans le fichier sÈlÈctionner -> quitte l'application
+                //erreur : impossible de cr√©√© ou d'√©crire dans le fichier s√©l√©ctionner -> quitte l'application
                 cout << "[ERROR] : impossible to create and/or write \"" << saveas << "\"" << endl;
                 system("pause");
                 exit(EXIT_FAILURE);
@@ -371,7 +371,7 @@ void CryptOrDecryptFiles(string FilePath)
 
             for(unsigned int i(0); i < Fichier_processed_tab.size(); ++i)
             {
-                //convesrion tableau ASCII -> Chiane de caractËre
+                //convesrion tableau ASCII -> Chiane de caract√®re
                 cout << Fichier_processed_tab[i] << endl;
             }
 
@@ -380,7 +380,7 @@ void CryptOrDecryptFiles(string FilePath)
     }
     else
     {
-        //erreur : impossible de trouver ou de lire dans le fichier sÈlÈctionner -> quitte l'application
+        //erreur : impossible de trouver ou de lire dans le fichier s√©l√©ctionner -> quitte l'application
         cout << "[ERROR] : impossible to find and/or open \"" << FilePath << "\"" << endl;
         system("pause");
         exit(EXIT_FAILURE);
@@ -389,9 +389,9 @@ void CryptOrDecryptFiles(string FilePath)
 
 int main(int argc, char *argv[])
 {
-    system("title = CRYPTO V1 By Diab24");
+    system("title = CRYPTO Console By Diab24");
     srand(time(NULL)); // initialisation de rand
-    if (argc == 2)//mÈhode de glisser dÈposer
+    if (argc == 2)//m√©hode de glisser d√©poser
     {
         CryptOrDecryptFiles(argv[1]);
     }
@@ -421,20 +421,20 @@ int main(int argc, char *argv[])
 
         saveas = ajoutTXT(saveas);
 
-        //Ècriture dans le fichier de rÈsultat le text crypter/decrypter
+        //√©criture dans le fichier de r√©sultat le text crypter/decrypter
         ofstream fichier(saveas.c_str()); //ouverture du fichier
-        if(fichier)  //vÈrification de l'ouverture du fichier
+        if(fichier)  //v√©rification de l'ouverture du fichier
         {
-            //Ècriture ligne par ligne du fichier crypter / dÈcrypter
+            //√©criture ligne par ligne du fichier crypter / d√©crypter
             for(unsigned int i(0); i < tab_word_crypt.size(); i++)
             {
-                //convesrion tableau ASCII -> Chiane de caractËre
+                //convesrion tableau ASCII -> Chiane de caract√®re
                 fichier << tab_word_crypt[i] << endl;
             }
         }
         else
         {
-            //erreur : impossible de crÈÈ ou d'Ècrire dans le fichier sÈlÈctionner -> quitte l'application
+            //erreur : impossible de cr√©√© ou d'√©crire dans le fichier s√©l√©ctionner -> quitte l'application
             cout << "[ERROR] : impossible to create and/or write \"" << saveas << "\"" << endl;
             system("pause");
             exit(EXIT_FAILURE);
