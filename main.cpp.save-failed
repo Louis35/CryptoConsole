@@ -1,0 +1,331 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+int conversion_char_int(char a)
+{
+    switch (a)
+    {
+        case 'a':
+            return 1;
+            break;
+        case 'b':
+            return 2;
+            break;
+        case 'c':
+            return 3;
+            break;
+        case 'd':
+            return 4;
+            break;
+        case 'e':
+            return 5;
+            break;
+        case 'f':
+            return 6;
+            break;
+        case 'g':
+            return 7;
+            break;
+        case 'h':
+            return 8;
+            break;
+        case 'i':
+            return 9;
+            break;
+        case 'j':
+            return 10;
+            break;
+        case 'k':
+            return 11;
+            break;
+        case 'l':
+            return 12;
+            break;
+        case 'm':
+            return 13;
+            break;
+        case 'n':
+            return 14;
+            break;
+        case 'o':
+            return 15;
+            break;
+        case 'p':
+            return 16;
+            break;
+        case 'q':
+            return 17;
+            break;
+        case 'r':
+            return 18;
+            break;
+        case 's':
+            return 19;
+            break;
+        case 't':
+            return 20;
+            break;
+        case 'u':
+            return 21;
+            break;
+        case 'v':
+            return 22;
+            break;
+        case 'w':
+            return 23;
+            break;
+        case 'x':
+            return 24;
+            break;
+        case 'y':
+            return 25;
+            break;
+        case 'z':
+            return 26;
+            break;
+        case ' ':
+            return 0;
+            break;
+
+        default:
+            return 555;
+            break;
+    }
+}
+
+int conversion_int_char(int a)
+{
+    switch (a)
+    {
+        case 1:
+            return 'a';
+            break;
+        case 2:
+            return 'b';
+            break;
+        case 3:
+            return 'c';
+            break;
+        case 4:
+            return 'd';
+            break;
+        case 5:
+            return 'e';
+            break;
+        case 6:
+            return 'f';
+            break;
+        case 7:
+            return 'g';
+            break;
+        case 8:
+            return 'h';
+            break;
+        case 9:
+            return 'i';
+            break;
+        case 10:
+            return 'j';
+            break;
+        case 11:
+            return 'k';
+            break;
+        case 12:
+            return 'l';
+            break;
+        case 13:
+            return 'm';
+            break;
+        case 14:
+            return 'n';
+            break;
+        case 15:
+            return 'o';
+            break;
+        case 16:
+            return 'p';
+            break;
+        case 17:
+            return 'q';
+            break;
+        case 18:
+            return 'r';
+            break;
+        case 19:
+            return 's';
+            break;
+        case 20:
+            return 't';
+            break;
+        case 21:
+            return 'u';
+            break;
+        case 22:
+            return 'v';
+            break;
+        case 23:
+            return 'w';
+            break;
+        case 24:
+            return 'x';
+            break;
+        case 25:
+            return 'y';
+            break;
+        case 26:
+            return 'z';
+            break;
+        case 0:
+            return ' ';
+            break;
+        case 555:
+            return '.';
+            break;
+
+        default:
+            return '_';
+            break;
+    }
+}
+
+vector<int> conversion_str_vectInt(string a)
+{
+    vector<int> result;
+    int tmp;
+
+    int taille(a.size());
+    for(int i=0; i < taille; i++)
+    {
+        tmp = conversion_char_int(a[i]);
+        result.push_back(tmp);
+    }
+
+    return result;
+}
+
+string conversion_vectInt_str(vector<int> tab)
+{
+    string result("");
+    for(int i(0); i<tab.size(); ++i)
+    {
+        result.push_back(conversion_int_char(tab[i]));
+    }
+
+    return result;
+}
+
+int main(int argc, char *argv[])
+{
+    int modulo(27);
+    string a;
+    system("title = CRYPTO");
+    if (argc == 2)//méhode de glisser déposer
+    {
+        string nomFichier(argv[1]);
+        ifstream fichier(nomFichier.c_str());
+        if (fichier) //vérification de l'ouverture du fichier
+        {
+            string mode("none");
+            string saveas("untitled");
+            int error(0);
+            do
+            {
+                if(error < 1)
+                {
+                    cout << "crypt or decrypt this file : " << endl;
+                }
+                else
+                {
+                    cout << "[ERROR] : try again (type crypt or decrypt)" << endl;
+                }
+                cin >> mode;
+                error++;
+            }
+            while(mode != "crypt" && mode != "decrypt");
+
+            if (mode == "crypt")//Mode cryptage
+            {
+                system("cls");
+                cout << "------------------\nCRYPT MODE\n------------------\n" << endl;
+                cout << "save the crypt file as : " << endl;
+                cin >> saveas;
+
+                //stockae du fichier dans un tableau
+                string ligne;
+                vector<string> tableaux_fichier;
+                while (getline(fichier, ligne))
+                {
+
+                    tableaux_fichier.push_back(ligne);
+                }
+                fichier.close();
+
+                for(int i(0); i<tableaux_fichier.size(); ++i)
+                {
+                    cout << tableaux_fichier[i] << endl;
+                }
+
+                //traitement des chaine caractère (conversion en int)
+
+                vector<vector<int> > fichierINT;
+
+                for(int i(0); i<tableaux_fichier.size(); ++i)
+                {
+                    fichierINT.push_back(conversion_str_vectInt(tableaux_fichier[i]));
+                }
+
+                //cryptage
+
+                string cryptKey;
+                vector<int> cryptKey_array;
+                int KeyPlace;
+                int newcase;
+                system("cls");
+                cout << "enter the KEY : " << endl;
+                cin >> cryptKey;
+
+                cryptKey_array = conversion_str_vectInt(cryptKey);
+
+                for(int i(0); i<fichierINT.size(); ++i)
+                {
+                    for(int e(0); e<fichierINT[i].size(); ++e)
+                    {
+                        KeyPlace = i*e;
+                        KeyPlace = KeyPlace % cryptKey_array.size();
+                        newcase = fichierINT[i][e] + cryptKey_array[KeyPlace];
+                        newcase = newcase % modulo;
+                        fichierINT[i][e] = newcase;
+                    }
+                }
+
+                ofstream fichier(saveas.c_str());
+                if(fichier)  //On teste si tout est OK
+                {
+                    for(int i(0); i<fichierINT.size(); ++i)
+                    {
+                        fichier << conversion_vectInt_str(fichierINT[i]) << endl;
+                    }
+                }
+                else
+                {
+                    cout << "[ERROR] : impossible to create and/or write \"" << saveas << "\"" << endl;
+                }
+
+
+            }
+        }
+        else
+        {
+            cout << "[ERROR] : impossible to find and/or open \"" << argv[1] << "\"" << endl;
+        }
+    }
+
+    return EXIT_SUCCESS;
+}
