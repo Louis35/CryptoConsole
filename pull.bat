@@ -1,0 +1,3 @@
+echo Pull of origin master ...
+git pull origin master
+pause

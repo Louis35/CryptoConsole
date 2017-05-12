@@ -44,7 +44,7 @@ bool verifExt(string word, string ext)
         word_i--;
         ext_i--;
     }
-    while(re && ext_i )
+    while(re && ext_i );
 }
 
 int rand_a_b(int a, int b)

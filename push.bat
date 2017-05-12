@@ -1,0 +1,3 @@
+echo Push to GitHub(origin) branch master ...
+git push -u origin master
+pause
